@@ -15,10 +15,10 @@ var delMsg = (idx = 0) => {
         console.log("End of list");
         chatId = [];
         getEndId();
-        setTimeout(() => delMsg(idx+1), 10000);
+        setTimeout(() => delMsg(), 10000);
     }
 }
-xhr.open('GET', url+'?limit=50');
+xhr.open('GET', url+'?limit=100');
 xhr.setRequestHeader('X-RateLimit-Limit', 2);
 xhr.setRequestHeader('X-RateLimit-Remaining', 0);
 xhr.setRequestHeader('authorization', token);
