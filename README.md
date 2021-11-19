@@ -11,3 +11,6 @@
 ## How to Stop?
 * assign new function to delMsg
 * ex) delMsg = () => console.log("STOP")
+
+## It doesn't work!
+* READ ERROR MESSAGE. PLZ.
