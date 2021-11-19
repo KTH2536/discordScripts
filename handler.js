@@ -39,7 +39,7 @@ xhr.onload = () => {
                     if (xhr.response[i+6] === "9") {
                         currentId = xhr.response.slice(i+6, i+24);
                     }
-                    else if (xhr.response.slice(i+6, i+24) === "341617438883840000"){
+                    else if (xhr.response.slice(i+6, i+24) === yourUserId){
                         chatId.push(currentId);
                     }
                 }
