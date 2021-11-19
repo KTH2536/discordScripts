@@ -2,7 +2,7 @@ var xhr = new XMLHttpRequest();
 var req = new XMLHttpRequest();
 var currentId, chatId = [];
 var delMsg = (idx = 0) => {
-    if (idx < chatId.length - 1 && chatId.length > 0){
+    if (idx < chatId.length && chatId.length > 0){
         req.open('DELETE', url+"/"+chatId[idx]);
         req.setRequestHeader('X-RateLimit-Limit', 2);
         req.setRequestHeader('X-RateLimit-Remaining', 0);
