@@ -13,6 +13,7 @@ var delMsg = (idx = 0) => {
     }
     else {
         console.log("End of list");
+        chatId = [];
         getEndId();
         setTimeout(() => delMsg(idx+1), 10000);
     }
