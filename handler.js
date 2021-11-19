@@ -8,7 +8,7 @@ var delMsg = (idx = 0) => {
     req.setRequestHeader('authorization', token);
     req.send();
     console.log("Delete "+chatId[idx]);
-    if (idx < chatId.length - 1 && chatId.length > 0){
+    if (idx < chatId.length && chatId.length > 0){
         setTimeout(() => delMsg(idx+1), 3000);
     }
     else {
