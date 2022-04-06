@@ -48,5 +48,5 @@ xhr.onload = () => {
         }
     }
 };
-// To stop : delMsg = () => console.log("STOP)
+// To stop : delMsg = () => console.log("STOP")
 xhr.send();
