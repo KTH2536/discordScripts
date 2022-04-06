@@ -1,6 +1,7 @@
 var xhr = new XMLHttpRequest();
 var req = new XMLHttpRequest();
-var currentId, chatId = [];
+var currentId, chatId = []
+var url = '/api/v9/channels/{ChannelID}/messages'
 var delMsg = (idx = 0) => {
     if (idx < chatId.length && chatId.length > 0){
         req.open('DELETE', url+"/"+chatId[idx]);
