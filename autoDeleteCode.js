@@ -5,7 +5,7 @@ let token = "" // 개발자 도구의 Network 탭에서 Authorization 항목 값
 let targetId = "" // 개발자 모드로 유저 우클릭 시 ID 복사 활성화
 let currentId;
 let chatId = [];
-var url = '/api/v9/channels/1444581726729801870/messages'
+var url = `/api/v9/channels/${ChannelID}/messages`
 var delMsg = (idx = 0) => {
     if (idx < chatId.length && chatId.length > 0){
         req.open('DELETE', url+"/"+chatId[idx]);
