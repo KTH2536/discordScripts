@@ -1,7 +1,11 @@
 var xhr = new XMLHttpRequest();
 var req = new XMLHttpRequest();
-var currentId, chatId = []
-var url = '/api/v9/channels/{ChannelID}/messages'
+let ChannelID = "" // 개발자 모드로 채널 우클릭 시 ID 복사 활성화
+let token = "" // 개발자 도구의 Network 탭에서 Authorization 항목 값
+let targetId = "" // 개발자 모드로 유저 우클릭 시 ID 복사 활성화
+let currentId;
+let chatId = [];
+var url = '/api/v9/channels/1444581726729801870/messages'
 var delMsg = (idx = 0) => {
     if (idx < chatId.length && chatId.length > 0){
         req.open('DELETE', url+"/"+chatId[idx]);
@@ -36,18 +40,18 @@ var getEndId = () => {
 xhr.onload = () => {
     if (xhr.readyState === xhr.DONE) {
         if (xhr.status === 200) {
-            for(var i = 0; i < xhr.response.length; i++) {
-                if (xhr.response[i] === "i" && xhr.response[i+1] === "d") {
-                    if (xhr.response[i+6] === "9") {
-                        currentId = xhr.response.slice(i+6, i+24);
-                    }
-                    else if (xhr.response.slice(i+6, i+24) === yourUserId){
-                        chatId.push(currentId);
-                    }
+            let jsonRes = JSON.parse(xhr.response);
+            for (let i = 0; i < jsonRes.length; i++)
+            {
+                if (jsonRes[i].author.id === targetId)
+                {
+                    chatId.push(jsonRes[i].id)
                 }
             }
+            currentId = jsonRes[99].id;
         }
     }
 };
+// To Start : delMsg();
 // To stop : delMsg = () => console.log("STOP")
 xhr.send();
