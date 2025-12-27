@@ -2,8 +2,8 @@ var xhr = new XMLHttpRequest();
 var req = new XMLHttpRequest();
 let ChannelID = "" // 개발자 모드로 채널 우클릭 시 ID 복사 활성화
 let token = "" // 개발자 도구의 Network 탭에서 Authorization 항목 값
-let targetId = "" // 개발자 모드로 유저 우클릭 시 ID 복사 활성화
-let currentId;
+let UserName = "" // 유저 닉네임
+let startId;
 let chatId = [];
 var url = `/api/v9/channels/${ChannelID}/messages`
 var delMsg = (idx = 0) => {
@@ -30,7 +30,7 @@ xhr.setRequestHeader('authorization', token);
 xhr.responseType = 'text';
 var getEndId = () => {
     console.log("Collecting New ID List...");
-    xhr.open('GET', url+'?before='+currentId);
+    xhr.open('GET', url+'?before='+startId);
     xhr.setRequestHeader('X-RateLimit-Limit', 2);
     xhr.setRequestHeader('X-RateLimit-Remaining', 0);
     xhr.setRequestHeader('authorization', token);
@@ -43,12 +43,13 @@ xhr.onload = () => {
             let jsonRes = JSON.parse(xhr.response);
             for (let i = 0; i < jsonRes.length; i++)
             {
-                if (jsonRes[i].author.id === targetId)
+                if (jsonRes[i].author.global_name === UserName)
                 {
                     chatId.push(jsonRes[i].id)
                 }
             }
-            currentId = jsonRes[99].id;
+            startId = jsonRes.pop().id;
+            console.log(startId);
         }
     }
 };
