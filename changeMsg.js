@@ -21,11 +21,15 @@ var modifyMsg = (channelId, msgId, idx = 1) => {
         msg += rain[idx%4]+"\n";
         msg += rain[(idx+1)%4]+"\n";
         msg += rain[(idx+2)%4]+"\n";
+        msg += rain[(idx+3)%4]+"\n";
+        msg += rain[idx%4]+"\n";
+        msg += rain[(idx+1)%4]+"\n";
+        msg += rain[(idx+2)%4]+"\n";
         let man = rain[(idx+3)%4];
-        man[man.length-(idx%man.length)] = "𐂊";
+        man = man.substring(0, man.length-(idx%man.length))+"𐂊"+man.substring(man.length-(idx%man.length)+1, man.length+1);
         msg += man;
         xhr.send(JSON.stringify({'content' : msg}));
-        setTimeout(() => modifyMsg(channelId, msgId, idx+1), 2000); // 2500 is prequency, recommended over than 1500ms
+        setTimeout(() => modifyMsg(channelId, msgId, idx+1), 10000); // 10000 is prequency, 1000 => 1 sec
     }
 }
 
