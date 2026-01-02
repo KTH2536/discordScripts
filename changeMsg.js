@@ -10,7 +10,7 @@ let msgs = ["💥<:pistolright:1155387541881638962><:sadcat:1455855200454836346>
 var xhr = new XMLHttpRequest();
 let token = "" // authorization
 
-var modifyMsg = (channelId, msgId, idx = 1) => {
+var modifyMsg = (channelId, msgId, idx = 1, idx2 = 0) => {
     if (1){
         xhr.open('PATCH', '/api/v9/channels/'+channelId+'/messages/'+msgId, true); 
         xhr.setRequestHeader('X-RateLimit-Limit', 5);
@@ -20,15 +20,15 @@ var modifyMsg = (channelId, msgId, idx = 1) => {
         let msg = "";
         let lines = 10; // 몇줄?
         let i, temp;
-        for (i = 0; i < lines; i++) {
+        for (i = lines; i > 0; i--) {
             temp = rain[(idx + i)%rain.length]
-            msg += temp.substring(temp.length-((idx + i) % temp.length), temp.length) + temp.substring(0, temp.length - ((idx + i) % temp.length))+"\n";
+            msg += temp.substring((idx + i - idx2) % temp.length, temp.length) + temp.substring(0, (idx + i - idx2) % temp.length)+"\n";
         }
         temp = rain[(idx + ++i)%rain.length]
-        let man = temp.substring((temp.length + idx + i) % temp.length, temp.length-1) + "𐂊" + temp.substring(0, ((temp.length + idx + i) % temp.length));
+        let man = temp.substring((idx + i - idx2) % temp.length, temp.length - 1) + "𐂊" + temp.substring(0, (idx + i - idx2) % temp.length);
         msg += man;
         xhr.send(JSON.stringify({'content' : msg}));
-        setTimeout(() => modifyMsg(channelId, msgId, idx + 1), 10000); // 2500 is prequency, recommended over than 1500ms
+        setTimeout(() => modifyMsg(channelId, msgId, ++idx, ++idx2), 10000); // 2500 is prequency, recommended over than 1500ms
     }
 }
 
