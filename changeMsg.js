@@ -19,12 +19,13 @@ var modifyMsg = (channelId, msgId, idx = 1) => {
         xhr.setRequestHeader('Content-Type', 'application/json');
         let msg = "";
         let lines = 10; // 몇줄?
-        let i;
+        let i, temp;
         for (i = 0; i < lines; i++) {
-        msg += rain[(idx+i)%rain.length]+"\n";
+            temp = rain[(idx+i)%rain.length]
+            msg += temp.substring(temp.length-(idx % temp.length), temp.length) + temp.substring(0, temp.length - (idx % temp.length))+"\n";
         }
-        let man = rain[(idx+i+1)%rain.length];
-        man = man.substring(0, man.length-(idx%man.length))+"𐂊"+man.substring(man.length-(idx%man.length)+1, man.length+1);
+        temp = rain[(idx+i+1)%rain.length]
+        let man = temp.substring((temp.length + idx) % temp.length, temp.length-1) + "𐂊" + temp.substring(0, (temp.length + idx) % temp.length);
         msg += man;
         xhr.send(JSON.stringify({'content' : msg}));
         setTimeout(() => modifyMsg(channelId, msgId, idx+1), 10000); // 2500 is prequency, recommended over than 1500ms
