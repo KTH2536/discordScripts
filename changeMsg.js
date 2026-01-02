@@ -8,8 +8,8 @@ var modifyMsg = (channelId, msgId, idx = 0) => {
         xhr.setRequestHeader('X-RateLimit-Remaining', 0);
         xhr.setRequestHeader('authorization', token); // USER TOKEN MUST BE ASSIGN
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({'content' : msgs[idx%2]}));
-        setTimeout(() => modifyMsg(channelId, msgId, idx+1), 2500); // 2500 is prequency, recommended over than 1500ms
+        xhr.send(JSON.stringify({'content' : msgs[idx%msgs.length]}));
+        setTimeout(() => modifyMsg(channelId, msgId, idx+1), 2000); // 2500 is prequency, recommended over than 1500ms
     }
 }
 
