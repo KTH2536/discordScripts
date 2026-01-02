@@ -24,7 +24,7 @@ var modifyMsg = (channelId, msgId, idx = 1, idx2 = 0) => {
             temp = rain[(idx + i)%rain.length]
             msg += temp.substring((idx + i - idx2) % temp.length, temp.length) + temp.substring(0, (idx + i - idx2) % temp.length)+"\n";
         }
-        temp = rain[(idx + ++i)%rain.length]
+        temp = rain[(idx + i)%rain.length]
         let man = temp.substring((idx + i - idx2) % temp.length, temp.length - 1) + "𐂊" + temp.substring(0, (idx + i - idx2) % temp.length);
         msg += man;
         xhr.send(JSON.stringify({'content' : msg}));
