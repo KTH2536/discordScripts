@@ -11,7 +11,13 @@ let man = ["、ヽ｀ヽ｀、ヽヽ｀｀、ヽ｀、ヽヽ ｀｀ ヽ｀𐂊",
            "ヽ｀、ヽヽ𐂊、ヽ｀｀、ヽ｀ヽ｀｀ヽヽ｀ヽ、ヽ", 
            "｀𐂊｀ヽヽ｀ヽ｀、｀ヽ、｀ヽ、ヽ、ヽ｀ヽ｀ヽ"]
 
+            // <:emoji_name:emoji_id> / animated : <a:emoji_name:emoji_id>
+let msgs = ["💥<:pistolright:1155387541881638962><:sadcat:1455855200454836346><:pistolleft:1155386479502168064>💥",
+            "✴️<:pistolright:1155387541881638962><:sadcat:1455855200454836346><:pistolleft:1155386479502168064>✴️"];
+
 var xhr = new XMLHttpRequest();
+let token = "" // authorization
+
 var modifyMsg = (channelId, msgId, idx = 1) => {
     if (1){
         xhr.open('PATCH', '/api/v9/channels/'+channelId+'/messages/'+msgId, true); 
