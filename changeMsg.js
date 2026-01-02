@@ -25,7 +25,7 @@ var modifyMsg = (channelId, msgId, idx = 1, idx2 = 0) => {
             msg += temp.substring((idx + i - idx2) % temp.length, temp.length) + temp.substring(0, (idx + i - idx2) % temp.length)+"\n";
         }
         temp = rain[(idx + i)%rain.length]
-        let man = temp.substring((idx + i - idx2) % temp.length, temp.length - 1) + "𐂊" + temp.substring(0, (idx + i - idx2) % temp.length);
+        let man = temp.substring((idx + i - idx2) % temp.length, temp.length - 2) + "𐂊" + temp.substring(0, (idx + i - idx2 + 2) % temp.length);
         msg += man;
         xhr.send(JSON.stringify({'content' : msg}));
         setTimeout(() => modifyMsg(channelId, msgId, ++idx, ++idx2), 10000); // 2500 is prequency, recommended over than 1500ms
