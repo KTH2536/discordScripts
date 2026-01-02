@@ -21,14 +21,14 @@ var modifyMsg = (channelId, msgId, idx = 1) => {
         let lines = 10; // 몇줄?
         let i, temp;
         for (i = 0; i < lines; i++) {
-            temp = rain[(idx+i)%rain.length]
-            msg += temp.substring(temp.length-(idx % temp.length), temp.length) + temp.substring(0, temp.length - (idx % temp.length))+"\n";
+            temp = rain[(idx + i)%rain.length]
+            msg += temp.substring(temp.length-((idx + i) % temp.length), temp.length) + temp.substring(0, temp.length - ((idx + i) % temp.length))+"\n";
         }
-        temp = rain[(idx+i+1)%rain.length]
-        let man = temp.substring((temp.length + idx) % temp.length, temp.length-1) + "𐂊" + temp.substring(0, (temp.length + idx) % temp.length);
+        temp = rain[(idx + ++i)%rain.length]
+        let man = temp.substring((temp.length + idx + i) % temp.length, temp.length-1) + "𐂊" + temp.substring(0, ((temp.length + idx + i) % temp.length));
         msg += man;
         xhr.send(JSON.stringify({'content' : msg}));
-        setTimeout(() => modifyMsg(channelId, msgId, idx+1), 10000); // 2500 is prequency, recommended over than 1500ms
+        setTimeout(() => modifyMsg(channelId, msgId, idx + 1), 10000); // 2500 is prequency, recommended over than 1500ms
     }
 }
 
